@@ -72,7 +72,9 @@ Siga as instruções abaixo para executar o projeto:
 ---
 
 ## Diagrama UML
-*(O diagrama UML do sistema deve ser inserido aqui.)*
+<div align="center">
+  <img src="./UML.png" alt="MasterHead">
+</div>
 
 ---
 
