@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ZFINAL">
+  <ClassDiagramComponents>
+    <Class name="SaveLoad" package="data" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="t" type="Tela" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Tela" name="t"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="save" returnType="void" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DataStorage" package="data" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="faseAtual" type="ArrayList&lt;Personagem&gt;" visibility="package"/>
+        <Field name="GameOver" type="boolean" visibility="package"/>
+        <Field name="currentDialogue" type="String[]" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Consts" package="Auxiliar" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="CELL_SIDE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="RESx" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="RESy" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PERIOD" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MOVE_INTERVAL" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PATH" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="TIMER" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LEFT" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="DOWN" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="RIGHT" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="UP" type="int" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Desenho" package="Auxiliar" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="jCenario" type="Tela" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setCenario" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="umJCenario"/>
+        </Method>
+        <Method name="acessoATelaDoJogo" returnType="Tela" visibility="public" isStatic="true"/>
+        <Method name="getGraphicsDaTela" returnType="Graphics" visibility="public" isStatic="true"/>
+        <Method name="desenhar" returnType="void" visibility="public" isStatic="true">
+          <Argument type="ImageIcon" name="iImage"/>
+          <Argument type="int" name="iColuna"/>
+          <Argument type="int" name="iLinha"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Posicao" package="auxiliar" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="linha" type="int" visibility="private"/>
+        <Field name="coluna" type="int" visibility="private"/>
+        <Field name="linhaAnterior" type="int" visibility="private"/>
+        <Field name="colunaAnterior" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="linha"/>
+          <Argument type="int" name="coluna"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setPosicao" returnType="boolean" visibility="public">
+          <Argument type="int" name="linha"/>
+          <Argument type="int" name="coluna"/>
+        </Method>
+        <Method name="getLinha" returnType="int" visibility="public"/>
+        <Method name="volta" returnType="boolean" visibility="public"/>
+        <Method name="getColuna" returnType="int" visibility="public"/>
+        <Method name="igual" returnType="boolean" visibility="public">
+          <Argument type="Posicao" name="posicao"/>
+        </Method>
+        <Method name="copia" returnType="boolean" visibility="public">
+          <Argument type="Posicao" name="posicao"/>
+        </Method>
+        <Method name="moveUp" returnType="boolean" visibility="public"/>
+        <Method name="moveDown" returnType="boolean" visibility="public"/>
+        <Method name="moveRight" returnType="boolean" visibility="public"/>
+        <Method name="moveLeft" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ControleDeJogo" package="Controler" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="perdeVida" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="desenhaTudo" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Personagem&gt;" name="e"/>
+        </Method>
+        <Method name="processaTudo" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Personagem&gt;" name="umaFase"/>
+        </Method>
+        <Method name="ehPosicaoValida" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Personagem&gt;" name="umaFase"/>
+          <Argument type="Posicao" name="p"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Tela" package="Controler" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="cj" type="ControleDeJogo" visibility="private"/>
+        <Field name="saveLoad" type="SaveLoad" visibility="private"/>
+        <Field name="fases" type="Fases" visibility="private"/>
+        <Field name="FPS" type="int" visibility="private"/>
+        <Field name="UPS" type="int" visibility="private"/>
+        <Field name="g2" type="Graphics" visibility="private"/>
+        <Field name="iTimer" type="int" visibility="private"/>
+        <Field name="FPS_SET" type="int" visibility="private" isFinal="true"/>
+        <Field name="UPS_SET" type="int" visibility="private" isFinal="true"/>
+        <Field name="hero" type="Hero" visibility="private"/>
+        <Field name="faseAtual" type="ArrayList&lt;Personagem&gt;" visibility="private"/>
+        <Field name="currentDialogue" type="String[]" visibility="public"/>
+        <Field name="GameOver" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="LimpaTela" returnType="void" visibility="private"/>
+        <Method name="Reset" returnType="void" visibility="private"/>
+        <Method name="UpdateHealth" returnType="void" visibility="public"/>
+        <Method name="pontosdaFase" returnType="int" visibility="public"/>
+        <Method name="ehPosicaoValida" returnType="boolean" visibility="public">
+          <Argument type="Posicao" name="p"/>
+        </Method>
+        <Method name="addPersonagem" returnType="void" visibility="public">
+          <Argument type="Personagem" name="umPersonagem"/>
+        </Method>
+        <Method name="removePersonagem" returnType="void" visibility="public">
+          <Argument type="Personagem" name="umPersonagem"/>
+        </Method>
+        <Method name="getGraphicsBuffer" returnType="Graphics" visibility="public"/>
+        <Method name="paint" returnType="void" visibility="public">
+          <Argument type="Graphics" name="gOld"/>
+        </Method>
+        <Method name="keyPressed" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="mousePressed" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="initComponents" returnType="void" visibility="private"/>
+        <Method name="mouseMoved" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseClicked" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseReleased" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseEntered" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseExited" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseDragged" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="keyTyped" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyReleased" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="update" returnType="void" visibility="public"/>
+        <Method name="go" returnType="void" visibility="public"/>
+        <Method name="getHero" returnType="Hero" visibility="public"/>
+        <Method name="drawDialogueScreen" returnType="void" visibility="public"/>
+        <Method name="getFaseAtual" returnType="ArrayList&lt;Personagem&gt;" visibility="public"/>
+        <Method name="setFaseAtual" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Personagem&gt;" name="faseAtual"/>
+        </Method>
+        <Method name="isGameOver" returnType="boolean" visibility="public"/>
+        <Method name="setGameOver" returnType="void" visibility="public">
+          <Argument type="boolean" name="GameOver"/>
+        </Method>
+        <Method name="getCurrentDialogue" returnType="String[]" visibility="public"/>
+        <Method name="setCurrentDialogue" returnType="void" visibility="public">
+          <Argument type="String[]" name="currentDialogue"/>
+        </Method>
+        <Method name="drawSubWindow" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Method>
+        <Method name="BackGround" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="pokeball" package="Modelo" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Muro" package="Modelo" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="BichinhoVaiVemCima" package="Modelo" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="bRight" type="boolean" visibility="private"/>
+        <Field name="contaFrames" type="int" visibility="private"/>
+        <Field name="clock" type="int" visibility="private"/>
+        <Field name="animation" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validaPosicao" returnType="boolean" visibility="private">
+          <Argument type="Posicao" name="p"/>
+        </Method>
+        <Method name="voltaAUltimaPosicao" returnType="void" visibility="public"/>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Bichinhoteleporta" package="Modelo" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="bRight" type="boolean" visibility="private"/>
+        <Field name="rand" type="Random" visibility="package"/>
+        <Field name="contaFrames" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validaPosicao" returnType="boolean" visibility="private">
+          <Argument type="Posicao" name="p"/>
+        </Method>
+        <Method name="voltaAUltimaPosicao" returnType="void" visibility="public"/>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="BichinhoSeguidor" package="Modelo" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="h" type="Hero" visibility="package"/>
+        <Field name="contaFramesx" type="int" visibility="private"/>
+        <Field name="contaFramesy" type="int" visibility="private"/>
+        <Field name="Cooldown" type="int" visibility="private"/>
+        <Field name="animation" type="int" visibility="private"/>
+        <Field name="clock" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+          <Argument type="Hero" name="h"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validaPosicao" returnType="boolean" visibility="private">
+          <Argument type="Posicao" name="p"/>
+        </Method>
+        <Method name="voltaAUltimaPosicao" returnType="void" visibility="public"/>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Tiro" package="Modelo" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="Facing" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+          <Argument type="int" name="Facing"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="snake" package="Modelo" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="BichinhoVaiVemHorizontal" package="Modelo" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="bRight" type="boolean" visibility="private"/>
+        <Field name="contaFrames" type="int" visibility="private"/>
+        <Field name="animation" type="int" visibility="private"/>
+        <Field name="clock" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validaPosicao" returnType="boolean" visibility="private">
+          <Argument type="Posicao" name="p"/>
+        </Method>
+        <Method name="voltaAUltimaPosicao" returnType="void" visibility="public"/>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Caveira" package="Modelo" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="iContaIntervalos" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Fogo" package="Modelo" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Hero" package="Modelo" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="Points" type="int" visibility="private"/>
+        <Field name="aniTick" type="int" visibility="private"/>
+        <Field name="playerDir" type="int" visibility="private"/>
+        <Field name="moving" type="boolean" visibility="private"/>
+        <Field name="left" type="boolean" visibility="private"/>
+        <Field name="Life" type="int" visibility="private"/>
+        <Field name="Fase" type="int" visibility="private"/>
+        <Field name="Balas" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="voltaAUltimaPosicao" returnType="void" visibility="public"/>
+        <Method name="setPoints" returnType="void" visibility="public">
+          <Argument type="int" name="Points"/>
+        </Method>
+        <Method name="getPoints" returnType="int" visibility="public"/>
+        <Method name="getLife" returnType="int" visibility="public"/>
+        <Method name="setLife" returnType="void" visibility="public">
+          <Argument type="int" name="Life"/>
+        </Method>
+        <Method name="getBalas" returnType="int" visibility="public"/>
+        <Method name="setBalas" returnType="void" visibility="public">
+          <Argument type="int" name="Balas"/>
+        </Method>
+        <Method name="setPosicao" returnType="boolean" visibility="public">
+          <Argument type="int" name="linha"/>
+          <Argument type="int" name="coluna"/>
+        </Method>
+        <Method name="validaPosicao" returnType="boolean" visibility="private"/>
+        <Method name="moveUp" returnType="boolean" visibility="public"/>
+        <Method name="moveDown" returnType="boolean" visibility="public"/>
+        <Method name="moveRight" returnType="boolean" visibility="public"/>
+        <Method name="moveLeft" returnType="boolean" visibility="public"/>
+        <Method name="Atirar" returnType="void" visibility="public"/>
+        <Method name="updateAnimationTick" returnType="void" visibility="public"/>
+        <Method name="updatePos" returnType="void" visibility="private"/>
+        <Method name="resetDirBooleans" returnType="void" visibility="public"/>
+        <Method name="isLeft" returnType="boolean" visibility="public"/>
+        <Method name="isUp" returnType="boolean" visibility="public"/>
+        <Method name="isRight" returnType="boolean" visibility="public"/>
+        <Method name="isDown" returnType="boolean" visibility="public"/>
+        <Method name="setLeft" returnType="void" visibility="public">
+          <Argument type="boolean" name="left"/>
+        </Method>
+        <Method name="setUp" returnType="void" visibility="public">
+          <Argument type="boolean" name="up"/>
+        </Method>
+        <Method name="setRight" returnType="void" visibility="public">
+          <Argument type="boolean" name="right"/>
+        </Method>
+        <Method name="setDown" returnType="void" visibility="public">
+          <Argument type="boolean" name="down"/>
+        </Method>
+        <Method name="setPlayerDir" returnType="void" visibility="public">
+          <Argument type="int" name="playerDir"/>
+        </Method>
+        <Method name="update" returnType="void" visibility="public"/>
+        <Method name="getFase" returnType="int" visibility="public"/>
+        <Method name="setFase" returnType="void" visibility="public">
+          <Argument type="int" name="Fase"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Personagem" package="Modelo" visibility="public" isAbstract="true" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="iImage" type="ImageIcon" visibility="protected"/>
+        <Field name="pPosicao" type="Posicao" visibility="protected"/>
+        <Field name="bTransponivel" type="boolean" visibility="protected"/>
+        <Field name="bMortal" type="boolean" visibility="protected"/>
+        <Field name="bProjetil" type="boolean" visibility="protected"/>
+        <Field name="bAtiravel" type="boolean" visibility="protected"/>
+        <Field name="bPoint" type="boolean" visibility="protected"/>
+        <Field name="Life" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPosicao" returnType="Posicao" visibility="public"/>
+        <Method name="isbPoint" returnType="boolean" visibility="public"/>
+        <Method name="isbTransponivel" returnType="boolean" visibility="public"/>
+        <Method name="isbAtiravel" returnType="boolean" visibility="public"/>
+        <Method name="isbProjetil" returnType="boolean" visibility="public"/>
+        <Method name="isbMortal" returnType="boolean" visibility="public"/>
+        <Method name="isLife" returnType="boolean" visibility="public"/>
+        <Method name="setbTransponivel" returnType="void" visibility="public">
+          <Argument type="boolean" name="bTransponivel"/>
+        </Method>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+        <Method name="setPosicao" returnType="boolean" visibility="public">
+          <Argument type="int" name="linha"/>
+          <Argument type="int" name="coluna"/>
+        </Method>
+        <Method name="moveUp" returnType="boolean" visibility="public"/>
+        <Method name="moveDown" returnType="boolean" visibility="public"/>
+        <Method name="moveRight" returnType="boolean" visibility="public"/>
+        <Method name="moveLeft" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ZigueZague" package="Modelo" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Heart" package="Modelo" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="animation" type="int" visibility="private"/>
+        <Field name="clock" type="int" visibility="private"/>
+        <Field name="active" type="boolean" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="sNomeImagePNG"/>
+          <Argument type="boolean" name="active"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="autoDesenho" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Fases" package="Fases" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="Fase1" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+        <Method name="Fase2" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+        <Method name="Fase3" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+        <Method name="Fase4" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+        <Method name="Fase5" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+        <Method name="Fase6" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+        <Method name="GameOver" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Tela" name="t"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="cj" source="Controler.Tela" target="Controler.ControleDeJogo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.Bichinhoteleporta" target="Modelo.Personagem"/>
+    <HasRelation name="jCenario" source="Auxiliar.Desenho" target="Controler.Tela" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="faseAtual" source="Controler.Tela" target="Modelo.Personagem" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Personagem&gt;"/>
+    <UseRelation source="Modelo.BichinhoVaiVemCima" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="h" source="Modelo.BichinhoSeguidor" target="Modelo.Hero" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="faseAtual" source="data.DataStorage" target="Modelo.Personagem" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Personagem&gt;"/>
+    <UseRelation source="Controler.Tela" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pPosicao" source="Modelo.Personagem" target="auxiliar.Posicao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="saveLoad" source="Controler.Tela" target="data.SaveLoad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Modelo.Bichinhoteleporta" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.Tiro" target="Modelo.Personagem"/>
+    <IsRelation name="is" source="Modelo.ZigueZague" target="Modelo.Personagem"/>
+    <UseRelation source="auxiliar.Posicao" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hero" source="Controler.Tela" target="Modelo.Hero" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fases" source="Controler.Tela" target="Fases.Fases" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controler.ControleDeJogo" target="Modelo.Personagem" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.BichinhoVaiVemCima" target="Modelo.Personagem"/>
+    <UseRelation source="Modelo.BichinhoVaiVemHorizontal" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controler.Tela" target="Modelo.Personagem" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Fases.Fases" target="Controler.Tela" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.Muro" target="Modelo.Personagem"/>
+    <HasRelation name="t" source="data.SaveLoad" target="Controler.Tela" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.Fogo" target="Modelo.Personagem"/>
+    <IsRelation name="is" source="Modelo.Heart" target="Modelo.Personagem"/>
+    <UseRelation source="Auxiliar.Desenho" target="Controler.Tela" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Modelo.Personagem" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.BichinhoVaiVemHorizontal" target="Modelo.Personagem"/>
+    <IsRelation name="is" source="Modelo.Caveira" target="Modelo.Personagem"/>
+    <UseRelation source="Modelo.BichinhoSeguidor" target="auxiliar.Posicao" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.snake" target="Modelo.Personagem"/>
+    <IsRelation name="is" source="Modelo.Hero" target="Modelo.Personagem"/>
+    <IsRelation name="is" source="Modelo.BichinhoSeguidor" target="Modelo.Personagem"/>
+    <UseRelation source="Controler.Tela" target="Modelo.Hero" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modelo.pokeball" target="Modelo.Personagem"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
